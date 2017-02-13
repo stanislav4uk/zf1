@@ -1,0 +1,20 @@
+<?php echo $this->doctype() ?>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="expires" CONTENT="Wed, 26 Feb 2018 08:21:57 GMT">
+        <title>Zend Framework Application</title>
+        <?php echo $this->headLink()->appendStylesheet($this->baseUrl('/css/styles.css')); ?>
+        <?php
+            echo $this->headScript()
+                ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', '', ["defer" => ""])
+                ->appendFile($this->baseUrl('/js/jquery.form.js'), '', ["defer" => ""])
+//                ->appendFile($this->baseUrl('/js/scripts.js'), '', ["defer" => ""])
+            ;
+        ?>
+        <script type="" defer="defer" src="/js/scripts.js"></script>
+    </head>
+    <body>
+        <?php echo $this->layout()->content ?>
+    </body>
+</html>
