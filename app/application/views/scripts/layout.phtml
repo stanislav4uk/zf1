@@ -1,0 +1,14 @@
+<?php echo $this->doctype() ?>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Zend Framework Application</title>
+        <?php echo $this->headLink()->appendStylesheet('/css/styles.css'); ?>
+        <?php echo $this->inlineScript()->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', '', ["defer" => ""]) ?>
+        <?php echo $this->inlineScript()->prependFile($this->baseUrl('/js/jquery.form.js'), '', ["defer" => ""]) ?>
+        <?php echo $this->inlineScript()->prependFile($this->baseUrl('/js/scripts.js'), 'text/javascript', ["defer" => ""]) ?>
+    </head>
+    <body>
+        <?php echo $this->layout()->content ?>
+    </body>
+</html>

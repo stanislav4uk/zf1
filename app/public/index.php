@@ -15,12 +15,16 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 /** Zend_Application */
-require_once 'Zend/Application.php';
+require_once dirname(APPLICATION_PATH) . '/../vendor/autoload.php';
 
-// Create application, bootstrap, and run
 $application = new Zend_Application(
     APPLICATION_ENV,
     APPLICATION_PATH . '/configs/application.ini'
 );
-$application->bootstrap()
-            ->run();
+
+$application->bootstrap();
+
+/** Cronjobs don't need all the extra's so we don't execute the bootstrap **/
+if(!defined('_CRONJOB_') || _CRONJOB_ == false) {
+    $application->bootstrap()->run();
+}
