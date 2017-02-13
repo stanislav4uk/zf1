@@ -5,12 +5,15 @@ use App\Extensions\CurrencyConverter\Interfaces\ConverterInterface;
 use App\Extensions\ExchangeRatesFetcher\Interfaces\RateInterface;
 
 /**
- * Class Converter
+ * Provides a method for conversion
+ *
  * @package App\Extensions\CurrencyConverter
  */
 class Converter implements ConverterInterface
 {
     /**
+     * Performs conversion according to given rates
+     *
      * @param RateInterface $from
      * @param RateInterface $to
      * @param float         $quantity

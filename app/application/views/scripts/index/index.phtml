@@ -1,13 +1,15 @@
 <div id="converter">
     <h3>Currency Converter</h3>
-    <?php echo $this->form->setAction($this->url([], "currency_convert")); ?>
     <div class="history-operation">
         <ul>
             <?php if(!empty($this->story)) : ?>
                 <?php foreach($this->story as $item) : ?>
-<!--                    <li>--><?php //echo $item["from"], " ", $item["quantity"], " -> ", $item["result"], " ", $item["to"] ?><!--</li>-->
+                    <li><?php echo $item["from"], " ", $item["quantity"], " -> ", $item["result"], " ", $item["to"] ?></li>
                 <?php endforeach; ?>
             <?php endif; ?>
         </ul>
+    </div>
+    <div class="converter-form">
+        <?php echo $this->form->setAction($this->url([], "currency_convert")); ?>
     </div>
 </div>

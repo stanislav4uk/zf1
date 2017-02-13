@@ -1,25 +1,31 @@
 <?php
-namespace App\Extensions\ExchangeRatesBridge\Providers;
+namespace App\Extensions\ExchangeRatesFetcher\Providers;
 
 use App\Extensions\ExchangeRatesFetcher\Interfaces\RateProviderInterface;
 use App\Extensions\ExchangeRatesFetcher\Values\Rate;
 use App\Extensions\ExchangeRatesFetcher\Values\RatesCollection;
 
 /**
- * Class FixerProvider
- * @package App\Extensions\ExchangeRatesBridge\Providers
+ * Gets exchange rates and currency conversion.
+ *
+ * @package App\Extensions\ExchangeRatesFetcher\Providers
  */
 class FixerProvider implements RateProviderInterface
 {
+    /**
+     * Default currency for request.
+     */
     const BASE_CURRENCY = "USD";
 
     /**
+     * External api URL.
+     *
      * @var string
      */
     private $apiUrl = "http://api.fixer.io";
 
     /**
-     * {@inheritdoc}
+     * Gets exchange rates and currency conversion.
      *
      * @return RatesCollection
      * @throws \Exception
@@ -33,16 +39,18 @@ class FixerProvider implements RateProviderInterface
         }
 
         $rates = array();
-        $rates[] = new Rate(1, self::BASE_CURRENCY);
+        $rates[self::BASE_CURRENCY] = new Rate(1, self::BASE_CURRENCY);
 
         foreach ($result["rates"] as $currency => $rate) {
-            $rates[] = new Rate($rate, $currency);
+            $rates[$currency] = new Rate($rate, $currency);
         }
 
         return new RatesCollection($rates, $result["base"]);
     }
 
     /**
+     * The request to the external api to get data.
+     *
      * @param $url
      * @param array $params
      * @return mixed|null

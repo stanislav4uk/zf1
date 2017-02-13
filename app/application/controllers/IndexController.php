@@ -28,8 +28,8 @@ class IndexController extends Zend_Controller_Action
         $this->container = $this->getInvokeArg('bootstrap')->getResource('dp_container');
         $this->form = $this->container["\\App\\Forms\\ConverterForm"];
         $this->converter = $this->container["App\\Extensions\\CurrencyConverter\\Converter"];
-        $this->rates = $this->container["App\\Extensions\\ExchangeRatesBridge\\StorageDrivers\\MySql"];
         $this->convertingStory = $this->container["App\\Managers\\ConvertingStoryManager"];
+        $this->rates = $this->container["App\\Extensions\\ExchangeRatesFetcher\\StorageDrivers\\Redis"];
     }
 
     /**
@@ -42,7 +42,7 @@ class IndexController extends Zend_Controller_Action
     }
 
     /**
-     * Converter currency
+     * Convert currency
      */
     public function convertAction()
     {

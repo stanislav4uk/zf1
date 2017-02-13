@@ -8,7 +8,8 @@ use App\Extensions\ExchangeRatesFetcher\Values\Rate;
 use App\Extensions\ExchangeRatesFetcher\Values\RatesCollection;
 
 /**
- * Class MySql
+ * Provides a way to store exchange rates using MySQL as a storage.
+ *
  * @package App\Extensions\ExchangeRatesBridge\StorageDrivers
  */
 class MySql implements StorageInterface
@@ -20,6 +21,7 @@ class MySql implements StorageInterface
 
     /**
      * MySql constructor.
+     *
      * @param \Zend_Db_Table_Abstract $dbTable
      */
     public function __construct(\Zend_Db_Table_Abstract $dbTable)
@@ -28,7 +30,7 @@ class MySql implements StorageInterface
     }
 
     /**
-     * @return RateCollectionInterface
+     * {@inheritdoc}
      */
     public function all()
     {
@@ -43,8 +45,7 @@ class MySql implements StorageInterface
     }
 
     /**
-     * @param $currency
-     * @return RateInterface
+     * {@inheritdoc}
      */
     public function find($currency)
     {
@@ -54,8 +55,7 @@ class MySql implements StorageInterface
     }
 
     /**
-     * @param RateCollectionInterface $rateCollection
-     * @return bool
+     * {@inheritdoc}
      */
     public function save(RateCollectionInterface $rateCollection)
     {

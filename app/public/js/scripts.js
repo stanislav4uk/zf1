@@ -3,7 +3,18 @@
 		$("body").on("submit", "form", function (e) {
 			e.preventDefault();
 			var $this = $(this),
-				data = getFormData();
+				data = getFormData(),
+				errorMessage = "Invalid quantity";
+
+			if ($this.closest(".converter-form").find(".converter-error").length) {
+				$this.closest(".converter-form").find(".converter-error").empty();
+			}
+			//Invalid quantity
+			if (!numberVlidate(data.quantity)) {
+				$this.closest(".converter-form").append("<div class='converter-error'>"+errorMessage+"</div>");
+				console.error("Invalid quantity");
+				return false;
+			}
 
 			if (data.quantity.length) {
 				$this.ajaxSubmit({
@@ -23,10 +34,16 @@
 	});
 })(jQuery);
 
+/**
+ * Clear form data
+ */
 function clearData() {
 	$("input[name='quantity']").val("");
 }
 
+/**
+ * @returns {{quantity: (*|jQuery), from: (*|jQuery), to: (*|jQuery)}}
+ */
 function getFormData () {
 	var quantity = $("input[name='quantity']").val(),
 		from = $("select[name='from']").val(),
@@ -35,6 +52,27 @@ function getFormData () {
 	return {quantity: quantity, from: from, to: to};
 }
 
+/**
+ *
+ * @param from
+ * @param to
+ * @param quantity
+ * @param result
+ * @returns {string}
+ */
 function getItem(from, to, quantity, result){
 	return "<li>"+ from + " " + quantity + " -> " + result + " " + to + "</li>";
+}
+
+/**
+ *
+ * @param value
+ * @returns {boolean}
+ */
+function numberVlidate(value) {
+	if (0 == parseInt(value)) {
+		return false;
+	}
+
+	return !isNaN(value);
 }

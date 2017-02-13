@@ -30,7 +30,7 @@ class CronController extends \Zend_Controller_Action
     {
         $this->container = $this->getInvokeArg('bootstrap')->getResource('dp_container');
         $this->rateFetcher = $this->container["App\\Extensions\\ExchangeRatesFetcher\\RateManager"];
-        $this->rateStorage = $this->container["App\\Extensions\\ExchangeRatesBridge\\StorageDrivers\\MySql"];
+        $this->rateStorage = $this->container["App\\Extensions\\ExchangeRatesFetcher\\StorageDrivers\\Redis"];;
     }
 
     /**

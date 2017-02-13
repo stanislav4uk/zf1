@@ -5,7 +5,8 @@ use App\Extensions\ExchangeRatesFetcher\Interfaces\RateManagerInterface;
 use App\Extensions\ExchangeRatesFetcher\Interfaces\RateProviderInterface;
 
 /**
- * Class RateManager
+ * Gets exchange rates and currency conversion.
+ *
  * @package App\Extensions\ExchangeRatesFetcher
  */
 class RateManager implements RateManagerInterface
@@ -26,7 +27,7 @@ class RateManager implements RateManagerInterface
     }
 
     /**
-     * @return Interfaces\RateCollectionInterface
+     * {@inheritdoc}
      */
     public function fetch()
     {

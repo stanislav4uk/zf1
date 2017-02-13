@@ -1,9 +1,8 @@
 <?php
 namespace App\Forms;
 
-use App\Extensions\ExchangeRatesBridge\StorageDrivers\MySql;
 use App\Extensions\ExchangeRatesFetcher\Interfaces\RateInterface;
-use App\Models\DbTable\Rates;
+use App\Extensions\ExchangeRatesFetcher\StorageDrivers\Redis;
 
 /**
  * Class SelectCurrency
@@ -12,9 +11,7 @@ use App\Models\DbTable\Rates;
 class SelectCurrency extends \Zend_Form_Element_Select
 {
     public function init() {
-        $model = new Rates();
-        $storage = new MySql($model);
-        $rates = $storage->all();
+        $rates = (new Redis())->all();
 
         /** @var RateInterface $rate */
         foreach ($rates->getRates() as $rate) {

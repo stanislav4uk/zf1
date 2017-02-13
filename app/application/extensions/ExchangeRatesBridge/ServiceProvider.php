@@ -1,9 +1,10 @@
 <?php
 namespace App\Extensions\ExchangeRatesBridge;
 
-use App\Extensions\ExchangeRatesBridge\Providers\FixerProvider;
 use App\Extensions\ExchangeRatesBridge\StorageDrivers\MySql;
+use App\Extensions\ExchangeRatesFetcher\Providers\FixerProvider;
 use App\Extensions\ExchangeRatesFetcher\RateManager;
+use App\Extensions\ExchangeRatesFetcher\StorageDrivers\Redis;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
@@ -35,5 +36,8 @@ class ServiceProvider implements ServiceProviderInterface
             return new MySql($c["\\App\\Models\\DbTable\\Rates"]);
         };
 
+        $pimple["App\\Extensions\\ExchangeRatesFetcher\\StorageDrivers\\Redis"] = function ($c) {
+            return new Redis();
+        };
     }
 }

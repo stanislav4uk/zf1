@@ -4,7 +4,8 @@ namespace App\Extensions\ExchangeRatesFetcher\Values;
 use App\Extensions\ExchangeRatesFetcher\Interfaces\RateCollectionInterface;
 
 /**
- * Class RatesCollection
+ * Creates collection of values for foreign exchange rates and currencies.
+ *
  * @package App\Extensions\ExchangeRatesFetcher\Values
  */
 class RatesCollection implements RateCollectionInterface
@@ -20,7 +21,7 @@ class RatesCollection implements RateCollectionInterface
     private $rates;
 
     /**
-     * Currency constructor.
+     * Creates a new rate collection.
      *
      * @param Rate[] $rates
      * @param string $base
@@ -32,6 +33,8 @@ class RatesCollection implements RateCollectionInterface
     }
 
     /**
+     * Returns the base currency.
+     *
      * @return string
      */
     public function getBase()
@@ -40,6 +43,8 @@ class RatesCollection implements RateCollectionInterface
     }
 
     /**
+     * Returns rate values.
+     *
      * @return array
      */
     public function getRates()
