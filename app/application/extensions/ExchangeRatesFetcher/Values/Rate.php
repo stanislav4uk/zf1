@@ -29,11 +29,10 @@ class Rate implements RateInterface
      */
     public function __construct($rate, $base)
     {
-        if (is_numeric($rate)) {
+        if (!is_numeric($rate)) {
             throw new \Exception("Invalid rate argument");
         }
-
-        if (is_string($base)) {
+        if (!is_string($base)) {
             throw new \Exception("Invalid base argument");
         }
 
